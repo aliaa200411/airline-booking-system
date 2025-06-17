@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'flight_id',
+        'scheduled_time',
+        'gate',
+    ];
 
-    public function flights()
+
+    public function flight()
     {
         return $this->belongsTo(Flight::class);
     }

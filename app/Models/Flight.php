@@ -11,11 +11,25 @@ class Flight extends Model
     public function passengers()
     {
         return $this->belongsToMany(Passenger::class);
+
+    }
+    public function passenger()
+    {
+        return $this->belongsToMany(Passenger::class, 'flight_passenger', 'flight_id', 'passenger_id');
+    }
+     public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 
-    public function airports()
+     public function originAirport()
     {
-        return $this->belongsToMany(Airport::class);
+        return $this->belongsTo(Airport::class, 'origin_airport_id');
+    }
+
+    public function destinationAirport()
+    {
+        return $this->belongsTo(Airport::class, 'destination_airport_id');
     }
 
     public function schedules()
@@ -23,7 +37,7 @@ class Flight extends Model
         return $this->hasMany(Schedule::class);
     }
 
-    public function admins()
+    public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
